@@ -14,8 +14,14 @@ function createSquares (number) {
     }
 
 }
-const items = document.querySelectorAll('.items');
 
 createSquares(16);
 
+const items = document.querySelectorAll('.items');
+
+items.forEach((item) => {
+    item.addEventListener('mouseenter', () => {
+        item.classList.add('filled');
+    })
+})
 

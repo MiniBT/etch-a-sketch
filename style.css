@@ -11,3 +11,7 @@ body {
     display: flex;
     justify-content: center;
 }
+
+.filled {
+    background-color: black;
+}
