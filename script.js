@@ -1,6 +1,5 @@
 let size = 16;
 
-
 function createSquares (number) {
     let div = document.createElement('div');
     const main = document.querySelector('.main');
@@ -18,6 +17,8 @@ function createSquares (number) {
 createSquares(16);
 
 const items = document.querySelectorAll('.items');
+const button = document.querySelector('button');
+
 
 items.forEach((item) => {
     item.addEventListener('mouseenter', () => {
@@ -25,3 +26,8 @@ items.forEach((item) => {
     })
 })
 
+button.addEventListener('click', () => {
+    items.forEach((item) => {
+        item.classList.remove('filled');
+    });
+})

@@ -12,6 +12,11 @@ body {
     justify-content: center;
 }
 
+.items {
+    border-style: dotted;
+    border-width: thin;
+}
+
 .filled {
     background-color: black;
 }
