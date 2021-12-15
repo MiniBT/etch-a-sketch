@@ -1,46 +1,79 @@
 let size = 16;
+let items = document.querySelectorAll('.items');
+const erase = document.querySelector('#erase');
+const random = document.querySelector('#random');
+const black = document.querySelector('#black');
+const reset = document.querySelector('#reset');
+let color = 'black';
+
 
 function createSquares (number) {
     let div = document.createElement('div');
     const main = document.querySelector('.main');
 
-    main.setAttribute('style', 'grid-template-columns: repeat(16, 1fr); grid-template-rows: repeat(16, 1fr)');
+    while (main.firstChild) {
+        main.removeChild(main.firstChild);
+    }
 
-    for (i = 0; i < 256; i++) {
+    main.setAttribute('style', `grid-template-columns: repeat(${number}, 1fr); grid-template-rows: repeat(${number}, 1fr)`);
+
+    for (i = 0; i < number ** 2; i++) {
         let div = document.createElement('div');
         div.classList.add('items');
         main.appendChild(div);
     }
 
+    let items = document.querySelectorAll('.items');
+
+    items.forEach((item) => {
+        item.addEventListener('mouseenter', () => {
+            if (color == 'random') {
+            item.setAttribute('style', `background: ${'#'+Math.floor(Math.random()*16777215).toString(16)}`);
+            }
+            else if (color == 'black') {
+                item.setAttribute('style', 'background: black');
+            }
+            else if (color == 'white') {
+                item.setAttribute('style', 'background: white');
+            }
+        })
+    })
+    
 }
 
-createSquares(16);
+createSquares(size);
 
-const items = document.querySelectorAll('.items');
-const clear = document.querySelector('#clear');
-const random = document.querySelector('#random');
-let color = 'black';
 
 random.addEventListener('click', () => {
     color = 'random';
 })
 
-items.forEach((item) => {
-    item.addEventListener('mouseenter', () => {
-        if (color == 'random') {
-        item.setAttribute('style', `background: ${'#'+Math.floor(Math.random()*16777215).toString(16)}`);
-        }
-        else {
-            item.setAttribute('style', 'background: black');
-        }
-    })
+black.addEventListener('click', () => {
+    color = 'black';
 })
 
+erase.addEventListener('click', () => {
+    color = 'white';
+})
 
+reset.addEventListener('click', () => {
+    let size = prompt('Size of board?');
+    if (isNaN(Number(size))) {
+        window.alert("Not a number");
+    }
+    else if (Number(size) > 100 || Number(size) < 1) {
+        window.alert("Outside of range");
+    }
+    else {
+        createSquares(size);
+
+    }
+})
+/*
 clear.addEventListener('click', () => {
     items.forEach((item) => {
         item.removeAttribute('style');
     });
     color = 'black';
 })
-
+*/
