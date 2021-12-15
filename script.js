@@ -17,17 +17,30 @@ function createSquares (number) {
 createSquares(16);
 
 const items = document.querySelectorAll('.items');
-const button = document.querySelector('button');
+const clear = document.querySelector('#clear');
+const random = document.querySelector('#random');
+let color = 'black';
 
+random.addEventListener('click', () => {
+    color = 'random';
+})
 
 items.forEach((item) => {
     item.addEventListener('mouseenter', () => {
-        item.classList.add('filled');
+        if (color == 'random') {
+        item.setAttribute('style', `background: ${'#'+Math.floor(Math.random()*16777215).toString(16)}`);
+        }
+        else {
+            item.setAttribute('style', 'background: black');
+        }
     })
 })
 
-button.addEventListener('click', () => {
+
+clear.addEventListener('click', () => {
     items.forEach((item) => {
-        item.classList.remove('filled');
+        item.removeAttribute('style');
     });
+    color = 'black';
 })
+
