@@ -1,5 +1,4 @@
 let size = 16;
-let items = document.querySelectorAll('.items');
 const erase = document.querySelector('#erase');
 const random = document.querySelector('#random');
 const black = document.querySelector('#black');
@@ -7,10 +6,11 @@ const reset = document.querySelector('#reset');
 let color = 'black';
 
 
+/* Creates grid based on the number given */
 function createSquares (number) {
-    let div = document.createElement('div');
     const main = document.querySelector('.main');
 
+    /* deletes current grid */
     while (main.firstChild) {
         main.removeChild(main.firstChild);
     }
@@ -25,6 +25,7 @@ function createSquares (number) {
 
     let items = document.querySelectorAll('.items');
 
+    /* colors each grid square on mouseenter based on color variable */
     items.forEach((item) => {
         item.addEventListener('mouseenter', () => {
             if (color == 'random') {
@@ -41,9 +42,10 @@ function createSquares (number) {
     
 }
 
+/* Initial grid creation*/
 createSquares(size);
 
-
+/* Changes color designation */
 random.addEventListener('click', () => {
     color = 'random';
 })
@@ -56,6 +58,8 @@ erase.addEventListener('click', () => {
     color = 'white';
 })
 
+
+/* resers the board and changes its size */
 reset.addEventListener('click', () => {
     let size = prompt('Size of board?');
     if (isNaN(Number(size))) {
@@ -66,14 +70,6 @@ reset.addEventListener('click', () => {
     }
     else {
         createSquares(size);
-
+        color = 'black';
     }
 })
-/*
-clear.addEventListener('click', () => {
-    items.forEach((item) => {
-        item.removeAttribute('style');
-    });
-    color = 'black';
-})
-*/
